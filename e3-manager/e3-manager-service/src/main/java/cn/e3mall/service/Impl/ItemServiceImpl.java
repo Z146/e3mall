@@ -1,9 +1,12 @@
 package cn.e3mall.service.Impl;
 
+import cn.e3mall.common.pojo.EasyUIDataGridResult;
 import cn.e3mall.mapper.TbItemMapper;
 import cn.e3mall.pojo.TbItem;
 import cn.e3mall.pojo.TbItemExample;
 import cn.e3mall.service.ItemService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +32,19 @@ public class ItemServiceImpl implements ItemService {
             return list.get(0);
         }
         return null;
+    }
+
+    @Override
+    public EasyUIDataGridResult getItemList(int page, int rows) {
+        PageHelper.startPage(page, rows);
+        TbItemExample example = new TbItemExample();
+        List<TbItem> list = itemMapper.selectByExample(example);
+        EasyUIDataGridResult result = new EasyUIDataGridResult();
+        result.setRows(list);
+        PageInfo<TbItem> pageInfo = new PageInfo<>(list);
+        long total = pageInfo.getTotal();
+        result.setTotal(total);
+
+        return result;
     }
 }
