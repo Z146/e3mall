@@ -25,6 +25,8 @@
         <url-pattern>*.jpg</url-pattern>
         <url-pattern>*.png</url-pattern>
         <url-pattern>*.gif</url-pattern>
+        <!--springMVC 会拦截 图片上传 中 添加图片  所以在这里需要放行-->
+        <url-pattern>*.swf</url-pattern>
     </servlet-mapping>
 
     <!-- springmvc的前端控制器 -->
