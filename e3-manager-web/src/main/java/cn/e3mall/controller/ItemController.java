@@ -3,6 +3,7 @@ package cn.e3mall.controller;
 import cn.e3mall.common.pojo.EasyUIDataGridResult;
 import cn.e3mall.common.utils.E3Result;
 import cn.e3mall.pojo.TbItem;
+import cn.e3mall.pojo.TbItemDesc;
 import cn.e3mall.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +46,6 @@ public class ItemController {
         return e3Result;
     }
 
-
     @RequestMapping("/rest/item/instock")
     @ResponseBody
     public E3Result instockItem(String[] ids){
@@ -57,6 +57,21 @@ public class ItemController {
     @ResponseBody
     public E3Result reshelfItem(String[] ids){
         E3Result e3Result = itemService.reshelfItem(ids);
+        return e3Result;
+    }
+
+    @RequestMapping("/rest/item/query/item/desc/{id}")
+    @ResponseBody
+    public E3Result getDesc(@PathVariable long id){
+        TbItemDesc itemDesc = itemService.getDesc(id);
+        return E3Result.ok(itemDesc);
+    }
+
+    @RequestMapping(value = "/rest/item/update",method = RequestMethod.POST)
+    @ResponseBody
+    public E3Result updateItem(TbItem item, String desc){
+
+        E3Result e3Result = itemService.updateItem(item, desc);
         return e3Result;
     }
 }

@@ -109,4 +109,25 @@ public class ItemServiceImpl implements ItemService {
         }
         return E3Result.ok();
     }
+
+    @Override
+    public TbItemDesc getDesc(long id) {
+        TbItemDesc itemDesc = itemDescMapper.selectByPrimaryKey(id);
+
+        return itemDesc;
+    }
+
+    @Override
+    public E3Result updateItem(TbItem item, String desc) {
+
+        item.setUpdated(new Date());
+        itemMapper.updateByPrimaryKeySelective(item);
+
+        TbItemDesc itemDesc = new TbItemDesc();
+        itemDesc.setItemId(item.getId());
+        itemDesc.setUpdated(new Date());
+        itemDesc.setItemDesc(desc);
+        itemDescMapper.updateByPrimaryKeySelective(itemDesc);
+        return E3Result.ok();
+    }
 }

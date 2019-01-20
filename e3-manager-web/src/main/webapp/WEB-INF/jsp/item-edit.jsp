@@ -101,6 +101,7 @@
 		$("#itemeEditForm [name=itemParams]").val(paramJson);
 		
 		$.post("/rest/item/update",$("#itemeEditForm").serialize(), function(data){
+			alert(1);
 			if(data.status == 200){
 				$.messager.alert('提示','修改商品成功!','info',function(){
 					$("#itemEditWindow").window('close');
