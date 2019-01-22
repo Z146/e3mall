@@ -17,4 +17,6 @@ public interface ItemService {
     TbItemDesc getDesc(long id);
 
     E3Result updateItem(TbItem item, String desc);
+
+    TbItemDesc getItemDescById(long itemId);
 }
