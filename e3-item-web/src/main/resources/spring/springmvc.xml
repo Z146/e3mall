@@ -19,7 +19,11 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
+	<bean id="freemarkerConfig"
+		  class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/ftl/" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
 	<!-- 引用dubbo服务 -->
 	<dubbo:application name="e3-item-web"/>
 	<dubbo:registry protocol="zookeeper" address="192.168.202.128:2181"/>
